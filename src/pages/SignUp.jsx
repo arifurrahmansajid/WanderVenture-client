@@ -51,7 +51,7 @@ const SignUp = () => {
     return (
         <div className="py-24 px-3">
             <form onSubmit={handleCreateUser} className=" container mx-auto px-6 py-8 md:px-8 max-w-lg border shadow-xl">
-                <h1 className='text-2xl font-black text-primay text-center'>Hotel.Fair</h1>
+                <h1 className='text-2xl font-black text-primay text-center'>WanderVenture</h1>
                 <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
                     Welcome back! Please Sign Up Hurry Up
                 </p>

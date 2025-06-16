@@ -85,7 +85,7 @@ const Home = () => {
                             <div className="absolute inset-0 flex items-center justify-center text-center px-4">
                                 <div className="max-w-3xl text-white">
                                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                                        Luxury Redefined at Hotel.Fair
+                                        Luxury Redefined at WanderVenture
                                     </h1>
                                     <p className="text-lg md:text-xl mb-8">
                                         {index === 0 && "Experience the pinnacle of hospitality where every moment is crafted to perfection."}
@@ -179,7 +179,7 @@ const Home = () => {
                         <div className="bg-white p-8 rounded-xl shadow-md">
                             <h3 className="text-2xl font-semibold flex items-center gap-2 text-gray-800 mb-6">
                                 <FaMapMarkerAlt className="text-[#4D869C]" />
-                                Hotel.Fair Address
+                                WanderVenture Address
                             </h3>
                             <div className="space-y-4">
                                 <p className="flex items-start gap-3 text-gray-700">
@@ -235,7 +235,7 @@ const Home = () => {
                                 {popupOpen && (
                                     <Overlay anchor={[24.455447, 89.709901]} offset={[0, 20]}>
                                         <div className="p-2 bg-white rounded shadow-lg">
-                                            <h4 className="font-bold text-[#4D869C]">Hotel.Fair</h4>
+                                            <h4 className="font-bold text-[#4D869C]">WanderVenture</h4>
                                             <p className="text-sm">123 Hospitality Avenue</p>
                                             <button
                                                 className="text-xs text-[#4D869C] mt-1"

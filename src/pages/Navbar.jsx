@@ -77,7 +77,7 @@ const Navbar = () => {
               className="flex items-center gap-2 text-2xl font-bold text-[#4D869C] hover:text-[#3a6a7d] transition-colors"
             >
               <FaHotel className="text-2xl" />
-              <span>Hotel.Fair</span>
+              <span>WanderVenture</span>
             </Link>
           </div>
 
