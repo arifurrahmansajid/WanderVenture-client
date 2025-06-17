@@ -24,6 +24,7 @@ const MyRooms = () => {
 
     useEffect(() => {
         getData();
+        // eslint-disable-next-line
     }, []);
 
     const handleDelete = (id) => {
