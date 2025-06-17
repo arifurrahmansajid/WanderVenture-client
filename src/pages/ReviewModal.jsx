@@ -9,15 +9,17 @@ import Swal from "sweetalert2";
 const ReviewModal = ({ room, reviewModal }) => {
     const { room_Title } = room;
     const [startDate, setStartDate] = useState(new Date());
-    const { user } = useAuth()
+    const { user } = useAuth();
+
     const handleReview = e => {
-        e.preventDefault()
-        const reviewUser = user?.displayName
-        const userEmail = user?.email
-        const roomTitle = room_Title
-        const reviewDate = e.target.date.value
-        const ratings = e.target.rating.value
-        const customerReview = e.target.reviewArea.value
+        e.preventDefault();
+        const reviewUser = user?.displayName;
+        const userEmail = user?.email;
+        const roomTitle = room_Title;
+        const reviewDate = e.target.date.value;
+        const ratings = e.target.rating.value;
+        const customerReview = e.target.reviewArea.value;
+        
         const userReviews = {
             reviewUser,
             userEmail,
@@ -25,70 +27,119 @@ const ReviewModal = ({ room, reviewModal }) => {
             reviewDate,
             ratings,
             customerReview
-        }
-        axios.post(`${import.meta.env.VITE_API_LINK}/reviews`, userReviews, {withCredentials: true})
-        .then(res =>{
-            console.log(res.data);
-            if(res.data.insertedId){
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Review Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  })
-                  reviewModal(false)
-            }
-        })
-    }
+        };
+
+        axios.post(`${import.meta.env.VITE_API_LINK}/reviews`, userReviews, { withCredentials: true })
+            .then(res => {
+                if(res.data.insertedId){
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Review Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    });
+                    reviewModal(false);
+                }
+            });
+    };
+
     return (
-        <div className="fixed inset-0 pt-12 md:pt-20 px-3 z-10 w-full bg-gray-500 bg-opacity-45">
-            <form onSubmit={handleReview} className="max-w-xl mx-auto shadow-2xl border rounded-lg bg-gray-50 dark:bg-gray-800 p-3 md:p-8 relative space-y-1 md:space-y-5 text-lg">
-                <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Rooms Title</label>
-                    <input type="text" defaultValue={room_Title} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                </div>
-                <div className="-mx-2 md:items-center md:flex">
-                    <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Name</label>
-                        <input type="text" defaultValue={user?.displayName} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
-
-                    <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Booking Date</label>
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} name="date" className="block w-full px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                    </div>
-                </div>
-                <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
-                    <input type="email" defaultValue={user?.email} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                </div>
-
-                <div className="flex-1 px-2">
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Rating</label>
-                    <select name="rating" required className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Add Your Review</label>
-                    <textarea name="reviewArea" required className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" ></textarea>
-                </div>
-
-
-
-                <button className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-primay rounded-lg hover:bg-cyan-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                    Add Review
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+            <div className="relative w-full max-w-2xl mx-4 bg-white rounded-xl shadow-xl overflow-hidden">
+                {/* Close Button */}
+                <button 
+                    onClick={() => reviewModal(false)}
+                    className="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                    <RxCross2 className="w-5 h-5 text-gray-500" />
                 </button>
 
-                <div onClick={reviewModal} className="cursor-pointer absolute top-0 right-0 text-3xl pr-2">
-                    <RxCross2 />
+                <div className="p-6 md:p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Share Your Experience</h2>
+                    
+                    <form onSubmit={handleReview} className="space-y-5">
+                        {/* Room Title */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Room Title</label>
+                            <input 
+                                type="text" 
+                                defaultValue={room_Title} 
+                                readOnly 
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                            />
+                        </div>
+
+                        {/* User Info Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                                <input 
+                                    type="text" 
+                                    defaultValue={user?.displayName} 
+                                    readOnly 
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Review Date</label>
+                                <DatePicker 
+                                    selected={startDate} 
+                                    onChange={(date) => setStartDate(date)} 
+                                    name="date" 
+                                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Email */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                defaultValue={user?.email} 
+                                readOnly 
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                            />
+                        </div>
+
+                        {/* Rating */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                            <select 
+                                name="rating" 
+                                required 
+                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                                <option value="5">5 Stars - Excellent</option>
+                                <option value="4">4 Stars - Very Good</option>
+                                <option value="3">3 Stars - Good</option>
+                                <option value="2">2 Stars - Fair</option>
+                                <option value="1">1 Star - Poor</option>
+                            </select>
+                        </div>
+
+                        {/* Review Text */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                            <textarea 
+                                name="reviewArea" 
+                                required 
+                                rows="5"
+                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Tell us about your experience with this room..."
+                            ></textarea>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="w-full py-3.5 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                            Submit Review
+                        </button>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     );
 };
