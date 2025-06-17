@@ -33,7 +33,27 @@ export const router = createBrowserRouter([
         path: '/allRooms',
         element: <AllRooms></AllRooms>
       },
-      
+      {
+        path: '/roomDetails/:id',
+        element: <PrivateRoutes>
+          <RoomsDetails></RoomsDetails>
+        </PrivateRoutes>,
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_LINK}/rooms/${params.id}`, {credentials: 'include'})
+      },
+      {
+        path: '/myRooms',
+        element: <PrivateRoutes>
+          <MyRooms></MyRooms>
+        </PrivateRoutes>
+      },
+      {
+        path: '/about',
+        element: <AboutUs></AboutUs>
+      },
+      {
+        path: '/contact',
+        element: <ContactUs></ContactUs>
+      }
     ]
   },
 ]);
