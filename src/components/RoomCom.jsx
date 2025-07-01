@@ -17,7 +17,7 @@ const RoomCom = ({ room }) => {
     const { _id, description, price_per_night, availability, room_images } = room;
     return (
         <Link to={`/roomDetails/${_id}`} data-aos="fade-up"
-            className='border p-5 hover:scale-110 duration-300'>
+            className='border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl p-0 hover:scale-105 duration-300 transition-all bg-white'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -37,23 +37,28 @@ const RoomCom = ({ room }) => {
                     room_images.map((image, id) => <SwiperSlide key={id}>
                         <div className="relative h-72">
                             <img className='h-72 w-full object-cover object-center' src={image} alt="" />
-                            <div className="absolute top-0 w-full bg-black bg-opacity-30 h-full">
-                                <div className='bg-primay p-3 flex items-center justify-between'>
-                                    <h1 className="font-bold text-xl text-white ">{availability}</h1>
-                                    <h1 className="font-bold text-xl text-white "> 
-                                    $ {price_per_night}</h1>
+                            <div className="absolute top-0 w-full bg-gradient-to-t from-black/70 to-transparent h-full flex flex-col justify-between p-4">
+                                <span className="bg-primay text-white px-3 py-1 rounded-full text-sm font-medium self-end">
+                                    {availability}
+                                </span>
+                                <div className='flex justify-between items-end'>
+                                    <h1 className="text-2xl font-bold text-white">{description}</h1>
+                                    <span className="bg-white text-primay px-3 py-1 rounded-lg font-bold text-lg shadow-md">
+                                        ${price_per_night}<span className="text-sm">/night</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </SwiperSlide>)
                 }
             </Swiper>
-            <div className='py-5'>
-                <h1 className='text-2xl font-bold text-primay'>{description}</h1>
-            </div>
-            <div className='float-end flex items-center gap-3 font-bold text-xl hover:text-primay duration-300 transition'>
-                <button>View Details</button>
-                <FaArrowRightLong></FaArrowRightLong>
+            <div className='p-5'>
+                <div className='flex items-center justify-between mt-2'>
+                    <button className="group flex items-center gap-2 font-semibold text-lg hover:text-primay duration-300 transition-colors">
+                        View Details
+                        <FaArrowRightLong className="group-hover:translate-x-1 transition-transform duration-300"/>
+                    </button>
+                </div>
             </div>
         </Link>
     );

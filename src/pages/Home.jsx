@@ -13,7 +13,6 @@ import { IoIosArrowForward } from "react-icons/io";
 // Components
 import ClientReview from "../components/ClientReview";
 import RoomCom from "../components/RoomCom";
-import OfferModal from "./OfferModal";
 import FAQ from "./FAQ";
 
 // Assets
@@ -26,15 +25,14 @@ import slider4 from '../assets/sliders/slider4.jpg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import BlogSection from "./BlogSection";
 
 const Home = () => {
     const [rooms, setRooms] = useState([]);
-    const [offer, setOffer] = useState(true);
+  
     const [popupOpen, setPopupOpen] = useState(false);
 
-    const handleModal = () => {
-        setOffer(!offer);
-    };
+
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_LINK}/rooms`, { withCredentials: true })
@@ -256,8 +254,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/* Special Offer Modal */}
-            {offer && <OfferModal handleModal={handleModal} />}
+            <BlogSection/>
+            
         </div>
     );
 };

@@ -42,8 +42,8 @@ const Footer = () => {
                             <Link to="/" className="text-gray-600 hover:text-[#4D869C] transition-colors">
                                 Home
                             </Link>
-                            <Link to="/rooms" className="text-gray-600 hover:text-[#4D869C] transition-colors">
-                                Rooms & Suites
+                            <Link to="/allRooms" className="text-gray-600 hover:text-[#4D869C] transition-colors">
+                                Room
                             </Link>
                             <Link to="/about" className="text-gray-600 hover:text-[#4D869C] transition-colors">
                                 About Us

@@ -8,16 +8,19 @@ const AllRooms = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_LINK}/rooms`)
-            .then(res => {
+        const fetchRooms = async () => {
+            try {
+                const url = searchTerm
+                    ? `${import.meta.env.VITE_API_LINK}/rooms?search=${encodeURIComponent(searchTerm)}`
+                    : `${import.meta.env.VITE_API_LINK}/rooms`;
+                const res = await axios.get(url);
                 setRooms(res.data);
-            });
-    }, []);
-
-    const filteredRooms = rooms.filter(room => 
-        room.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        room.room_size.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+            } catch (error) {
+                setRooms([]); // Optionally handle error
+            }
+        };
+        fetchRooms();
+    }, [searchTerm]);
 
     return (
         <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -29,7 +32,6 @@ const AllRooms = () => {
                 <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
                     Discover the perfect accommodation for your stay
                 </p>
-                
                 {/* Decorative elements */}
                 <div className="flex justify-center mt-8">
                     <div className="w-20 h-1.5 bg-blue-600 rounded-full"></div>
@@ -53,9 +55,9 @@ const AllRooms = () => {
             </div>
 
             {/* Rooms Grid */}
-            {filteredRooms.length > 0 ? (
+            {rooms.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredRooms.map(room => (
+                    {rooms.map(room => (
                         <RoomCom key={room._id} room={room} />
                     ))}
                 </div>
@@ -73,7 +75,7 @@ const AllRooms = () => {
 
             {/* Room Count */}
             <div className="mt-12 text-center text-gray-500">
-                Showing {filteredRooms.length} of {rooms.length} rooms
+                Showing {rooms.length} room{rooms.length !== 1 ? "s" : ""}
             </div>
         </div>
     );

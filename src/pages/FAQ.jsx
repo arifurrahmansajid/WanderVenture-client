@@ -124,7 +124,10 @@ const FAQ = () => {
                     <p className="text-gray-600 mb-6">
                         Still have questions? We're here to help!
                     </p>
-                    <button className="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <button 
+                        className="px-6 py-3 bg-[#4D869C] text-white font-medium rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        onClick={() => window.location.href = '/errorPage'}
+                    >
                         Contact Support
                     </button>
                 </div>
