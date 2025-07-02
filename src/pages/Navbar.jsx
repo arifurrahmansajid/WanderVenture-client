@@ -30,9 +30,11 @@ const Navbar = () => {
       <NavLink style={styleNav} to="/">
         <li className="px-4 py-2 hover:bg-blue-50 transition-colors rounded-lg">Home</li>
       </NavLink>
-      <NavLink style={styleNav} to="/allRooms">
-        <li className="px-4 py-2 hover:bg-blue-50 transition-colors rounded-lg">Rooms</li>
-      </NavLink>
+      {user && (
+        <NavLink style={styleNav} to="/allRooms">
+          <li className="px-4 py-2 hover:bg-blue-50 transition-colors rounded-lg">Rooms</li>
+        </NavLink>
+      )}
       {user && (
         <NavLink style={styleNav} to="/myRooms">
           <li className="px-4 py-2 hover:bg-blue-50 transition-colors rounded-lg">My Booking</li>

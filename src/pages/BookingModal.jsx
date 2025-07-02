@@ -61,43 +61,43 @@ const BookingModal = ({handleBookNow, room}) => {
     }
     return (
         <div className="fixed inset-0 pt-12 md:pt-20 px-3 z-10 w-full bg-gray-500 bg-opacity-45">
-            <form onSubmit={handleBookingRoom} className="max-w-xl mx-auto shadow-2xl border rounded-lg bg-gray-50 dark:bg-gray-800 p-3 md:p-8 relative space-y-1 md:space-y-5">
+            <form onSubmit={handleBookingRoom} className="max-w-xl mx-auto shadow-2xl border rounded-lg bg-gray-50 p-3 md:p-8 relative space-y-1 md:space-y-5">
             <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Rooms Title</label>
-                    <input type="text" defaultValue={description} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    <label className="block mb-2 text-sm text-gray-600">Rooms Title</label>
+                    <input type="text" defaultValue={description} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
                 <div className="-mx-2 md:items-center md:flex">
                     <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Rooms Price</label>
-                        <input type="text" defaultValue={`Per Night $ ${price_per_night}`} className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <label className="block mb-2 text-sm text-gray-600">Rooms Price</label>
+                        <input type="text" defaultValue={`Per Night $ ${price_per_night}`} className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Rooms Area</label>
-                        <input type="text" defaultValue={room_size} className="block w-full px-5 py-2.5  text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <label className="block mb-2 text-sm text-gray-600">Rooms Area</label>
+                        <input type="text" defaultValue={room_size} className="block w-full px-5 py-2.5  text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
                 </div>
 
                 <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Special Offers</label>
-                    <input type="text" defaultValue={special_offers} className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    <label className="block mb-2 text-sm text-gray-600">Special Offers</label>
+                    <input type="text" defaultValue={special_offers} className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div className="-mx-2 md:items-center md:flex">
                     <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Your Name</label>
-                        <input type="text" defaultValue={user?.displayName} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <label className="block mb-2 text-sm text-gray-600">Your Name</label>
+                        <input type="text" defaultValue={user?.displayName} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div className="flex-1 px-2">
-                        <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Booking Date</label>
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} name="date" className="block w-full px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <label className="block mb-2 text-sm text-gray-600">Booking Date</label>
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} name="date" className="block w-full px-5 py-2.5 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
                 </div>
 
                 <div>
-                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
-                    <input type="email" defaultValue={user?.email} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    <label className="block mb-2 text-sm text-gray-600">Email address</label>
+                    <input type="email" defaultValue={user?.email} readOnly className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
 
